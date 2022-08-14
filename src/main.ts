@@ -1,24 +1,45 @@
+import { ArcRotateCamera } from "@babylonjs/core/Cameras/arcRotateCamera"
+import { Engine } from "@babylonjs/core/Engines/engine"
+import { HemisphericLight } from "@babylonjs/core/Lights/hemisphericLight"
+import { Vector3 } from "@babylonjs/core/Maths/math.vector"
+import { MeshBuilder } from "@babylonjs/core/Meshes/meshBuilder"
+import { Scene } from "@babylonjs/core/scene"
+
+import { JuliaMaterial } from "@/materials/juliaMaterial"
 import "@/style.css"
-import { setupCounter } from "@/counter"
-import typescriptLogo from "@/typescript.svg"
 
 
-document.querySelector<HTMLDivElement>("#app")!.innerHTML = `
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://www.typescriptlang.org/" target="_blank">
-      <img src="${typescriptLogo}" class="logo vanilla" alt="TypeScript logo" />
-    </a>
-    <h1>Vite + TypeScript</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite and TypeScript logos to learn more
-    </p>
-  </div>
-`
+// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+const canvas = document.getElementById("app")! as HTMLCanvasElement
+const engine = new Engine(
+  canvas,
+  true,
+  undefined,
+  true
+)
+const scene = new Scene(engine)
 
-setupCounter(document.querySelector<HTMLButtonElement>("#counter")!)
+const camera = new ArcRotateCamera("camera", 0, 0, 10, Vector3.Zero(), scene)
+camera.speed = 1
+camera.wheelPrecision = 1
+camera.angularSensibilityX = 200
+camera.angularSensibilityY = 200
+camera.panningSensibility = 200
+camera.inertia = 0
+camera.upVector = new Vector3(0, 0, 1)
+camera.attachControl(canvas, true)
+
+const light = new HemisphericLight("light", new Vector3(0, 1, 0), scene)
+light.intensity = 0.7
+
+const sphere = MeshBuilder.CreateSphere("sphere", { diameter: 5 }, scene)
+sphere.material = new JuliaMaterial("material", scene)
+
+const resizeObserver = new ResizeObserver(() => {
+  engine.resize()
+})
+
+resizeObserver.observe(canvas)
+engine.runRenderLoop(() => {
+  scene.render()
+})

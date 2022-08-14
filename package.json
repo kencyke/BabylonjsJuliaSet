@@ -10,6 +10,9 @@
     "lint": "eslint src/**/*.ts",
     "lint:fix": "eslint src/**/*.ts --fix"
   },
+  "dependencies": {
+    "@babylonjs/core": "5.19.0"
+  },
   "devDependencies": {
     "@types/node": "^18.7.0",
     "@typescript-eslint/eslint-plugin": "^5.33.0",
