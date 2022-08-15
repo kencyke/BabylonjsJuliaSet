@@ -15,7 +15,7 @@ export class JuliaMaterial extends ShaderMaterial {
   constructor(name: string, scene: Scene) {
     super(name, scene, { vertex: shaderName, fragment: shaderName }, {
       attributes: ["position", "normal", "uv"],
-      uniforms: ["worldViewProjection", "time"]
+      uniforms: ["world", "worldView", "worldViewProjection", "view", "projection", "time"]
     })
 
     const startTime = Date.now()
