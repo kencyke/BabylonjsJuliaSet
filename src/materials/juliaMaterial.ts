@@ -14,21 +14,9 @@ Effect.ShadersStore[`${shaderName}FragmentShader`] = FRAGMENT_SHADER
 export class JuliaMaterial extends ShaderMaterial {
   constructor(name: string, scene: Scene) {
     super(name, scene, { vertex: shaderName, fragment: shaderName }, {
+      // cf. https://doc.babylonjs.com/advanced_topics/shaders/introToShaders#built-in-inputs
       attributes: ["position", "normal", "uv"],
       uniforms: ["world", "worldView", "worldViewProjection", "view", "projection", "time"]
     })
-
-    const startTime = Date.now()
-
-    scene.registerBeforeRender(() => {
-      const currentTime = Date.now()
-      const time = currentTime - startTime
-
-      this.time = time / 1000
-    })
-  }
-
-  set time(value: number) {
-    this.setFloat("time", value)
   }
 }

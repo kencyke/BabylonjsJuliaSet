@@ -19,21 +19,20 @@ const engine = new Engine(
 )
 const scene = new Scene(engine)
 
-const camera = new ArcRotateCamera("camera", 0, 0, 10, Vector3.Zero(), scene)
+const camera = new ArcRotateCamera("camera", 0, 0, 4, Vector3.Zero(), scene)
 camera.speed = 1
-camera.wheelPrecision = 1
+camera.wheelPrecision = 10
 camera.angularSensibilityX = 200
 camera.angularSensibilityY = 200
 camera.panningSensibility = 200
 camera.inertia = 0
-camera.upVector = new Vector3(0, 0, 1)
 camera.attachControl(canvas, true)
 
 const light = new HemisphericLight("light", new Vector3(0, 1, 0), scene)
 light.intensity = 0.7
 
-const sphere = MeshBuilder.CreateSphere("sphere", { diameter: 5 }, scene)
-sphere.material = new JuliaMaterial("material", scene)
+const plane = MeshBuilder.CreateGround("plane", { width: 100, height: 100 }, scene)
+plane.material = new JuliaMaterial("material", scene)
 
 const resizeObserver = new ResizeObserver(() => {
   engine.resize()
