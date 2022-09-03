@@ -3,8 +3,6 @@ import { Camera } from "@babylonjs/core/Cameras/camera"
 import { Vector3 } from "@babylonjs/core/Maths/math.vector"
 import { Scene } from "@babylonjs/core/scene"
 
-import { DroneCameraMouseWheelInput } from "@/camera/droneCameraWheelInput"
-
 
 export class DroneCamera extends ArcRotateCamera {
   private _initOrthoSize = 2
@@ -17,9 +15,11 @@ export class DroneCamera extends ArcRotateCamera {
   ) {
     super(name, 0, 0, distance, Vector3.Zero(), scene)
     this.mode = Camera.ORTHOGRAPHIC_CAMERA
-    this.inputs.clear()
-    this.inputs.add(new DroneCameraMouseWheelInput(1000))
     this.updateOrthoSize()
+  }
+
+  public getOrthoSizeScale(): number {
+    return this._orthoSizeScale
   }
 
   private getAspectRatio(): number {
