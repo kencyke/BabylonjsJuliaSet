@@ -9,7 +9,9 @@ varying vec3 vNormal;
 varying vec2 vUV;
 
 void main( void ) {
-  vec2 z = vPosition.zx;
+  float size = 100.0;
+  vec2 tUV = (vUV - 0.5) * size;
+  vec2 z = vec2(-tUV.y, tUV.x);
 	float m = 1000.0;
   float l = 0.0;
   for (l = 0.0; l < m; l += 1.0) {
