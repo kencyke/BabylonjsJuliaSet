@@ -9,7 +9,7 @@ import { DroneCamera } from "@/camera/droneCamera"
 import { droneMoveInputs } from "@/camera/droneCameraKeyboardMoveInput"
 import { DroneCameraMouseWheelInput } from "@/camera/droneCameraWheelInput"
 import { Axes } from "@/helpers/axes"
-import { JuliaMaterial } from "@/materials/juliaMaterial"
+import { CustomShaderMaterial } from "@/materials/customShaderMaterial"
 import "@/style.css"
 
 
@@ -49,7 +49,7 @@ new Axes(Vector3.Zero(), length / 2, scene)
 const plane = MeshBuilder.CreateGround("plane", { width: length, height: length }, scene)
 // ZX plane (normal: -Y direction)
 plane.rotationQuaternion = Quaternion.FromEulerAngles(Math.PI, 0, 0)
-plane.material = new JuliaMaterial("material", scene)
+plane.material = new CustomShaderMaterial("material", scene)
 
 const resizeObserver = new ResizeObserver(() => {
   engine.resize()

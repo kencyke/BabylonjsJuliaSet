@@ -11,7 +11,7 @@ Effect.ShadersStore[`${shaderName}VertexShader`] = VERTEX_SHADER
 Effect.ShadersStore[`${shaderName}FragmentShader`] = FRAGMENT_SHADER
 
 
-export class JuliaMaterial extends ShaderMaterial {
+export class CustomShaderMaterial extends ShaderMaterial {
   constructor(name: string, scene: Scene) {
     super(name, scene, { vertex: shaderName, fragment: shaderName }, {
       // cf. https://doc.babylonjs.com/advanced_topics/shaders/introToShaders#built-in-inputs

@@ -101,7 +101,7 @@ export class CameraKeyboardMoveInput<TCamera extends Camera> implements ICameraI
   }
 
   getClassName(): string {
-    return "DroneCameraKeyboardMoveInput"
+    return "CameraKeyboardMoveInput"
   }
 
   getSimpleName(): string {
